@@ -12,6 +12,12 @@ class KsiazkaAdresowa
     int idUsunietegoAdresata;
 
     vector <Uzytkownik> uzytkownicy;
+
+private: //nie musi tego byc bo wszystko od class w dol jest private az do innego punktora
+    Uzytkownik podajDaneNowegoUzytkownika();
+    int pobierzIdNowegoUzytkownika();
+    bool czyIstniejeLogin (string login);
 public:
     void rejestracjaUzytkownika();
+    void wypiszWszystkichUzytkownikow();
 };
