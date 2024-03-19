@@ -23,8 +23,7 @@ Uzytkownik UzytkownikManager::podajDaneNowegoUzytkownika()
 {
     Uzytkownik uzytkownik;
 
-    //uzytkownik.id = pobierzIdNowegoUzytkownika(); - tak bylo
-    uzytkownik.ustawId(pobierzIdNowegoUzytkownika()); // tak stalo
+    uzytkownik.ustawId(pobierzIdNowegoUzytkownika());
 
     do
     {
@@ -67,4 +66,9 @@ void UzytkownikManager::wypiszWszystkichUzytkownikow()
         cout << uzytkownicy[i].pobierzLogin() << endl;
         cout << uzytkownicy[i].pobierzHaslo() << endl;
     }
+}
+
+void UzytkownikManager::wczytajUzytkownikowZPliku()
+{
+    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
 }
