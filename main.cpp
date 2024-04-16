@@ -4,14 +4,18 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     KsiazkaAdresowa ksiazkaAdresowa ("Uzytkownicy.txt", "Adresaci.txt");
 
-    while (true) {
-        if (ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika() == 0) {
+while (true)
+    {
+        if (ksiazkaAdresowa.czyUzytkownikJestZalogowany())
+        {
             char wybor = ksiazkaAdresowa.wybierzOpcjeZMenuGlownego();
 
-            switch (wybor) {
+            switch (wybor)
+            {
             case '1':
                 ksiazkaAdresowa.rejestracjaUzytkownika();
                 break;
@@ -26,27 +30,31 @@ int main() {
                 system("pause");
                 break;
             }
-        } else {
+        }
+        else
+        {
             char wybor = ksiazkaAdresowa.wybierzOpcjeZMenuUzytkownika();
 
-            switch (wybor) {
+            switch (wybor)
+            {
             case '1':
                 ksiazkaAdresowa.dodajAdresata();
                 break;
             case '2':
-                cout << endl << "Na razie nie wprowadzono." << endl << endl;
+                //wyszukajAdresatowPoImieniu(adresaci);
                 break;
             case '3':
-                cout << endl << "Na razie nie wprowadzono." << endl << endl;
+                //wyszukajAdresatowPoNazwisku(adresaci);
                 break;
             case '4':
-                ksiazkaAdresowa.wypiszWszystkichAdresatow();
+                ksiazkaAdresowa.wypiszWszystkichAdresatowZalogowanegoUzytkownika();
                 break;
             case '5':
-                cout << endl << "Na razie nie wprowadzono." << endl << endl;
+                //idUsunietegoAdresata = usunAdresata(adresaci);
+                //idOstatniegoAdresata = podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(idUsunietegoAdresata, idOstatniegoAdresata);
                 break;
             case '6':
-                cout << endl << "Na razie nie wprowadzono." << endl << endl;
+                //edytujAdresata(adresaci);
                 break;
             case '7':
                 ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();

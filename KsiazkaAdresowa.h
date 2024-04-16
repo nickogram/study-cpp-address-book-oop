@@ -5,30 +5,40 @@
 
 #include "UzytkownikManager.h"
 #include "AdresatManager.h"
+#include "MetodyPomocnicze.h"
 
 using namespace std;
 
-class KsiazkaAdresowa {
+class KsiazkaAdresowa
+{
     UzytkownikManager uzytkownikManager;
-    AdresatManager adresatManager;
+    AdresatManager *adresatManager;
+
+    const string NAZWA_PLIKU_Z_ADRESATAMI;
 
 public:
-    KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami) : uzytkownikManager(nazwaPlikuZUzytkownikami), adresatManager(nazwaPlikuZAdresatami) {
+    KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
+    : uzytkownikManager(nazwaPlikuZUzytkownikami), NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
+    {
+        adresatManager = NULL;
+    };
 
-        uzytkownikManager.wczytajUzytkownikowZPliku();
+    ~KsiazkaAdresowa()
+    {
+      delete adresatManager;
+      adresatManager = NULL;
     };
 
     void rejestracjaUzytkownika();
-    void wypiszWszystkichUzytkownikow();
-    void logowanieUzytkownika();
 
-    int pobierzIdZalogowanegoUzytkownika();
+    void logowanieUzytkownika();
+    bool czyUzytkownikJestZalogowany();
+
     void zmianaHaslaZalogowanegoUzytkownika();
     void wylogowanieUzytkownika();
 
-    int pobierzIdOstatniegoAdresata();
     void dodajAdresata();
-    void wypiszWszystkichAdresatow();
+    void wypiszWszystkichAdresatowZalogowanegoUzytkownika();
 
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();
