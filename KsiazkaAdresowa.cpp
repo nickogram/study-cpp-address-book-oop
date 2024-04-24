@@ -1,61 +1,53 @@
 #include "KsiazkaAdresowa.h"
 
-char wczytajZnak() {
-    string wejscie = "";
-    char znak  = {0};
-
-    while (true) {
-        getline(cin, wejscie);
-
-        if (wejscie.length() == 1) {
-            znak = wejscie[0];
-            break;
-        }
-        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
-    }
-    return znak;
-}
-
-
 void KsiazkaAdresowa::rejestracjaUzytkownika() {
     uzytkownikManager.rejestracjaUzytkownika();
 }
 
-void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
-    uzytkownikManager.wypiszWszystkichUzytkownikow();
-}
-
 void KsiazkaAdresowa::logowanieUzytkownika() {
     uzytkownikManager.logowanieUzytkownika();
-    uzytkownikManager.pobierzIdZalogowanegoUzytkownika();
+    if (uzytkownikManager.czyUzytkownikJestZalogowany()) {
+        adresatManager = new AdresatManager (NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikManager.pobierzIdZalogowanegoUzytkownika());
+    }
+}
 
-    adresatManager.ustawIdZalogowanegoUzytkownika(uzytkownikManager.pobierzIdZalogowanegoUzytkownika());
-    adresatManager.pobierzAdresatowZalogowanegoUzytkownika();
+bool KsiazkaAdresowa::czyUzytkownikJestZalogowany() {
+    if (uzytkownikManager.czyUzytkownikJestZalogowany()) return false;
+    else return true;
 }
 
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
     uzytkownikManager.zmianaHaslaZalogowanegoUzytkownika();
 }
 
-int KsiazkaAdresowa::pobierzIdZalogowanegoUzytkownika() {
-    return uzytkownikManager.pobierzIdZalogowanegoUzytkownika();
-}
-
-int KsiazkaAdresowa::pobierzIdOstatniegoAdresata() {
-    return adresatManager.pobierzIdOstatniegoAdresataZAdresatManagera();
-}
-
 void KsiazkaAdresowa::wylogowanieUzytkownika() {
     uzytkownikManager.wylogowanieUzytkownika();
-    adresatManager.wylogowanieUzytkownika();
+    delete adresatManager;
+    adresatManager = NULL;
 }
 
 void KsiazkaAdresowa::dodajAdresata() {
-    adresatManager.dodajAdresata();
+    adresatManager -> dodajAdresata();
 }
 
-void KsiazkaAdresowa::wypiszWszystkichAdresatow() {
-    adresatManager.wypiszWszystkichAdresatow();
+void KsiazkaAdresowa::usunAdresata() {
+    adresatManager -> usunAdresata();
+}
+
+void KsiazkaAdresowa::edytujAdresata() {
+    adresatManager -> edytujAdresata();
+}
+
+void KsiazkaAdresowa::wypiszWszystkichAdresatowZalogowanegoUzytkownika() {
+    adresatManager -> wypiszWszystkichAdresatow();
+}
+
+void KsiazkaAdresowa::wyszukajAdresatowPoImieniu() {
+    adresatManager -> wyszukajAdresatowPoImieniu();
+}
+
+void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku() {
+    adresatManager -> wyszukajAdresatowPoNazwisku();
 }
 
 char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego() {
@@ -63,14 +55,15 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego() {
 
     system("cls");
     cout << "    >>> MENU  GLOWNE <<<" << endl;
-    cout << " Id Zalogowanego Uzytkownika: "<< pobierzIdZalogowanegoUzytkownika() << endl;
+    cout << " IdZalogowanegoUzytkownika: "<< uzytkownikManager.pobierzIdZalogowanegoUzytkownika() << endl;
     cout << "---------------------------" << endl;
     cout << "1. Rejestracja" << endl;
-    cout << "2. Logowanie" << endl;
+    cout << "2. Logowanie" << endl << endl;
     cout << "9. Koniec programu" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
-    wybor = wczytajZnak();
+
+    wybor = MetodyPomocnicze::wczytajZnak();
 
     return wybor;
 }
@@ -80,20 +73,22 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika() {
 
     system("cls");
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
-    cout << " Id Zalogowanego Uzytkownika: "<< pobierzIdZalogowanegoUzytkownika() << endl;
+    cout << " IdZalogowanegoUzytkownika: "<< uzytkownikManager.pobierzIdZalogowanegoUzytkownika() << endl;
+    cout << " IdOstatniegoAdresata: " << adresatManager -> pobierzIdOstatniegoAdresataZAdresatManagera() <<endl;
     cout << "---------------------------" << endl;
     cout << "1. Dodaj adresata" << endl;
-    cout << "NIEWPROWADZONO 2. Wyszukaj po imieniu" << endl;
-    cout << "NIEWPROWADZONO 3. Wyszukaj po nazwisku" << endl;
+    cout << "2. Wyszukaj po imieniu" << endl;
+    cout << "3. Wyszukaj po nazwisku" << endl;
     cout << "4. Wyswietl adresatow" << endl;
-    cout << "NIEWPROWADZONO 5. Usun adresata" << endl;
-    cout << "NIEWPROWADZONO 6. Edytuj adresata" << endl;
+    cout << "5. Usun adresata" << endl;
+    cout << "6. Edytuj adresata" << endl;
     cout << "---------------------------" << endl;
     cout << "7. Zmien haslo" << endl;
     cout << "8. Wyloguj sie" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
-    wybor = wczytajZnak();
+
+    wybor = MetodyPomocnicze::wczytajZnak();
 
     return wybor;
 }

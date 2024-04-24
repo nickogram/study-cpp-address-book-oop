@@ -13,26 +13,34 @@
 using namespace std;
 
 class AdresatManager {
-    int idZalogowanegoUzytkownika;
-    int idOstatniegoAdresata;
+    const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
     vector <Adresat> adresaci;
     PlikZAdresatami plikZAdresatami;
 
-    Adresat podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata);
+    int idOstatniegoAdresata;
+
+    Adresat podajDaneNowegoAdresata();
     int pobierzIdOstatniegoAdresataZPliku();
     void wyswietlDaneAdresata(Adresat adresat);
+    bool menuEdycjiAdresata(bool czyWprowadzonoZmiany, int pozycjaDoEdycji);
 
 public:
-    AdresatManager(string nazwaPlikuZAdresatami) : plikZAdresatami(nazwaPlikuZAdresatami) {};
-
-    void ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUzytkownika);
+    AdresatManager(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika)
+        : ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika), plikZAdresatami(nazwaPlikuZAdresatami, ID_ZALOGOWANEGO_UZYTKOWNIKA) {
+        pobierzAdresatowZalogowanegoUzytkownika();
+    };
 
     int pobierzIdOstatniegoAdresataZAdresatManagera();
     void pobierzAdresatowZalogowanegoUzytkownika();
+
     void dodajAdresata();
     void wypiszWszystkichAdresatow();
 
-    void wylogowanieUzytkownika();
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
+    void usunAdresata();
+    void edytujAdresata();
+
 };
 
 #endif

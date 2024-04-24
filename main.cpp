@@ -8,7 +8,7 @@ int main() {
     KsiazkaAdresowa ksiazkaAdresowa ("Uzytkownicy.txt", "Adresaci.txt");
 
     while (true) {
-        if (ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika() == 0) {
+        if (ksiazkaAdresowa.czyUzytkownikJestZalogowany()) {
             char wybor = ksiazkaAdresowa.wybierzOpcjeZMenuGlownego();
 
             switch (wybor) {
@@ -34,19 +34,19 @@ int main() {
                 ksiazkaAdresowa.dodajAdresata();
                 break;
             case '2':
-                cout << endl << "Na razie nie wprowadzono." << endl << endl;
+                ksiazkaAdresowa.wyszukajAdresatowPoImieniu();
                 break;
             case '3':
-                cout << endl << "Na razie nie wprowadzono." << endl << endl;
+                ksiazkaAdresowa.wyszukajAdresatowPoNazwisku();
                 break;
             case '4':
-                ksiazkaAdresowa.wypiszWszystkichAdresatow();
+                ksiazkaAdresowa.wypiszWszystkichAdresatowZalogowanegoUzytkownika();
                 break;
             case '5':
-                cout << endl << "Na razie nie wprowadzono." << endl << endl;
+                ksiazkaAdresowa.usunAdresata();
                 break;
             case '6':
-                cout << endl << "Na razie nie wprowadzono." << endl << endl;
+                ksiazkaAdresowa.edytujAdresata();
                 break;
             case '7':
                 ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
