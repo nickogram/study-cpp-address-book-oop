@@ -14,8 +14,7 @@
 
 using namespace std;
 
-class UzytkownikManager
-{
+class UzytkownikManager {
     int idZalogowanegoUzytkownika;
     vector <Uzytkownik> uzytkownicy;
 
@@ -27,7 +26,7 @@ class UzytkownikManager
 
 public:
     UzytkownikManager(string nazwaPlikuZUzytkownikami)
-    : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
+        : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
         idZalogowanegoUzytkownika = 0;
         uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
     };

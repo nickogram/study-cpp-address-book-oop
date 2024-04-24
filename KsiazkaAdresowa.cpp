@@ -1,49 +1,56 @@
 #include "KsiazkaAdresowa.h"
 
-void KsiazkaAdresowa::rejestracjaUzytkownika()
-{
+void KsiazkaAdresowa::rejestracjaUzytkownika() {
     uzytkownikManager.rejestracjaUzytkownika();
 }
 
-void KsiazkaAdresowa::logowanieUzytkownika()
-{
+void KsiazkaAdresowa::logowanieUzytkownika() {
     uzytkownikManager.logowanieUzytkownika();
-    if (uzytkownikManager.czyUzytkownikJestZalogowany())
-    {
+    if (uzytkownikManager.czyUzytkownikJestZalogowany()) {
         adresatManager = new AdresatManager (NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikManager.pobierzIdZalogowanegoUzytkownika());
     }
 }
 
-bool KsiazkaAdresowa::czyUzytkownikJestZalogowany()
-{
+bool KsiazkaAdresowa::czyUzytkownikJestZalogowany() {
     if (uzytkownikManager.czyUzytkownikJestZalogowany()) return false;
     else return true;
 }
 
-void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika()
-{
+void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
     uzytkownikManager.zmianaHaslaZalogowanegoUzytkownika();
 }
 
-void KsiazkaAdresowa::wylogowanieUzytkownika()
-{
+void KsiazkaAdresowa::wylogowanieUzytkownika() {
     uzytkownikManager.wylogowanieUzytkownika();
     delete adresatManager;
     adresatManager = NULL;
 }
 
-void KsiazkaAdresowa::dodajAdresata()
-{
+void KsiazkaAdresowa::dodajAdresata() {
     adresatManager -> dodajAdresata();
 }
 
-void KsiazkaAdresowa::wypiszWszystkichAdresatowZalogowanegoUzytkownika()
-{
+void KsiazkaAdresowa::usunAdresata() {
+    adresatManager -> usunAdresata();
+}
+
+void KsiazkaAdresowa::edytujAdresata() {
+    adresatManager -> edytujAdresata();
+}
+
+void KsiazkaAdresowa::wypiszWszystkichAdresatowZalogowanegoUzytkownika() {
     adresatManager -> wypiszWszystkichAdresatow();
 }
 
-char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego()
-{
+void KsiazkaAdresowa::wyszukajAdresatowPoImieniu() {
+    adresatManager -> wyszukajAdresatowPoImieniu();
+}
+
+void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku() {
+    adresatManager -> wyszukajAdresatowPoNazwisku();
+}
+
+char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego() {
     char wybor;
 
     system("cls");
@@ -61,21 +68,20 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego()
     return wybor;
 }
 
-char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika()
-{
+char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika() {
     char wybor;
 
     system("cls");
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
     cout << " IdZalogowanegoUzytkownika: "<< uzytkownikManager.pobierzIdZalogowanegoUzytkownika() << endl;
-    cout << " IdOstatniegoAdresata: " << adresatManager -> pobierzIdOstatniegoAdresataZAdresatManagera() <<endl; //potem usunac
+    cout << " IdOstatniegoAdresata: " << adresatManager -> pobierzIdOstatniegoAdresataZAdresatManagera() <<endl;
     cout << "---------------------------" << endl;
     cout << "1. Dodaj adresata" << endl;
-    cout << "NIEWPROWADZONO 2. Wyszukaj po imieniu" << endl;
-    cout << "NIEWPROWADZONO 3. Wyszukaj po nazwisku" << endl;
+    cout << "2. Wyszukaj po imieniu" << endl;
+    cout << "3. Wyszukaj po nazwisku" << endl;
     cout << "4. Wyswietl adresatow" << endl;
-    cout << "NIEWPROWADZONO 5. Usun adresata" << endl;
-    cout << "NIEWPROWADZONO 6. Edytuj adresata" << endl;
+    cout << "5. Usun adresata" << endl;
+    cout << "6. Edytuj adresata" << endl;
     cout << "---------------------------" << endl;
     cout << "7. Zmien haslo" << endl;
     cout << "8. Wyloguj sie" << endl;

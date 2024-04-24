@@ -12,9 +12,9 @@
 
 using namespace std;
 
-class PlikZAdresatami : public PlikTekstowy
-{
+class PlikZAdresatami : public PlikTekstowy {
     vector <Adresat> adresaciZalogowanegoUzytkownika;
+    vector <Adresat> adresaciWPliku;
     const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
     int idOstatniegoAdresata;
 
@@ -26,17 +26,12 @@ class PlikZAdresatami : public PlikTekstowy
 
     int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
     int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
-
-    //int zwrocNumerLiniiSzukanegoAdresata();
-    //void usunWybranaLinieWPliku();
-    //void usunPlik();
-    //void zmienNazwePliku();
+    void wczytajAdresatowZPliku();
+    void aktualizacjaPlikuZAdresatami();
 
 public:
     PlikZAdresatami(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika)
-    : PlikTekstowy(nazwaPlikuZAdresatami), ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika)
-    {
-
+        : PlikTekstowy(nazwaPlikuZAdresatami), ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika) {
     };
 
     int pobierzZPlikuIdOstatniegoAdresata();
@@ -47,8 +42,8 @@ public:
 
     void wczytajAdresatowZalogowanegoUzytkownikaZPliku();
 
-    //void usunAdresata();
-    //void zaktualizujDaneAdresata();
+    void usunAdresata(int idUsuwanegoAdresata);
+    void zaktualizujDaneAdresata(vector <Adresat> zmodyfikowaneAdresaci);
 };
 
 #endif

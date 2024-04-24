@@ -9,8 +9,7 @@
 
 using namespace std;
 
-class KsiazkaAdresowa
-{
+class KsiazkaAdresowa {
     UzytkownikManager uzytkownikManager;
     AdresatManager *adresatManager;
 
@@ -18,15 +17,13 @@ class KsiazkaAdresowa
 
 public:
     KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
-    : uzytkownikManager(nazwaPlikuZUzytkownikami), NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
-    {
+        : uzytkownikManager(nazwaPlikuZUzytkownikami), NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami) {
         adresatManager = NULL;
     };
 
-    ~KsiazkaAdresowa()
-    {
-      delete adresatManager;
-      adresatManager = NULL;
+    ~KsiazkaAdresowa() {
+        delete adresatManager;
+        adresatManager = NULL;
     };
 
     void rejestracjaUzytkownika();
@@ -38,7 +35,12 @@ public:
     void wylogowanieUzytkownika();
 
     void dodajAdresata();
+    void edytujAdresata();
+    void usunAdresata();
+
     void wypiszWszystkichAdresatowZalogowanegoUzytkownika();
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
 
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();

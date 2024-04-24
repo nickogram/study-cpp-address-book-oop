@@ -12,8 +12,7 @@
 
 using namespace std;
 
-class AdresatManager
-{
+class AdresatManager {
     const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
     vector <Adresat> adresaci;
     PlikZAdresatami plikZAdresatami;
@@ -23,27 +22,24 @@ class AdresatManager
     Adresat podajDaneNowegoAdresata();
     int pobierzIdOstatniegoAdresataZPliku();
     void wyswietlDaneAdresata(Adresat adresat);
-
-    //void wyswietlWyszukanychAdresatow();
-    //int podajIdWybranegoAdresata();
-
+    bool menuEdycjiAdresata(bool czyWprowadzonoZmiany, int pozycjaDoEdycji);
 
 public:
     AdresatManager(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika)
-    : ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika), plikZAdresatami(nazwaPlikuZAdresatami, ID_ZALOGOWANEGO_UZYTKOWNIKA)
-    {
+        : ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika), plikZAdresatami(nazwaPlikuZAdresatami, ID_ZALOGOWANEGO_UZYTKOWNIKA) {
         pobierzAdresatowZalogowanegoUzytkownika();
     };
 
-    int pobierzIdOstatniegoAdresataZAdresatManagera(); //potem usunac
+    int pobierzIdOstatniegoAdresataZAdresatManagera();
     void pobierzAdresatowZalogowanegoUzytkownika();
+
     void dodajAdresata();
     void wypiszWszystkichAdresatow();
 
-    //void wyszukajAdresatowPoImieniu();
-    //void wyszukajAdresatowPoNazwisku();
-    //void usunAdresata();
-    //void edytujAdresata();
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
+    void usunAdresata();
+    void edytujAdresata();
 
 };
 
