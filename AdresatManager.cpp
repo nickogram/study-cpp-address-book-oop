@@ -5,7 +5,6 @@ int AdresatManager::pobierzIdOstatniegoAdresataZPliku() {
     return idOstatniegoAdresata;
 }
 
-
 int AdresatManager::pobierzIdOstatniegoAdresataZAdresatManagera() {
     pobierzIdOstatniegoAdresataZPliku();
     return idOstatniegoAdresata;
@@ -16,7 +15,6 @@ void AdresatManager::pobierzAdresatowZalogowanegoUzytkownika() {
     adresaci = plikZAdresatami.pobierzAdresatowZalogowanegoUzytkownika();
     plikZAdresatami.wyczyszczRejestrAdresatowZalogowanegoUzytkownika();
 }
-
 
 void AdresatManager::wypiszWszystkichAdresatow() {
     system("cls");
@@ -134,7 +132,7 @@ void AdresatManager::dodajAdresata() {
     idOstatniegoAdresata++;
 }
 
-int podajIdWybranegoAdresata() {
+int AdresatManager::podajIdWybranegoAdresata() {
     int idWybranegoAdresata = 0;
     cout << "Podaj numer ID Adresata: ";
     idWybranegoAdresata  = MetodyPomocnicze::wczytajLiczbeCalkowita();
@@ -176,6 +174,7 @@ void AdresatManager::usunAdresata() {
 }
 
 void AdresatManager::edytujAdresata() {
+    Adresat zmodyfikowanyAdresat;
     int idDoEdycji = 0, pozycjaDoEdycji = 0;
     bool czyIstniejeAdresat = false;
     bool czyZmodyfikowanoAdresata = false;
@@ -192,7 +191,10 @@ void AdresatManager::edytujAdresata() {
             czyIstniejeAdresat = true;
             pozycjaDoEdycji = i;
             czyZmodyfikowanoAdresata = menuEdycjiAdresata(czyZmodyfikowanoAdresata, pozycjaDoEdycji);
-            if (czyZmodyfikowanoAdresata == true) plikZAdresatami.zaktualizujDaneAdresata(adresaci);
+            if (czyZmodyfikowanoAdresata == true) {
+                zmodyfikowanyAdresat = adresaci[i];
+                plikZAdresatami.zaktualizujDaneAdresata(zmodyfikowanyAdresat);
+            }
             break;
         }
     }

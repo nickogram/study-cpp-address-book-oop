@@ -14,20 +14,15 @@ using namespace std;
 
 class PlikZAdresatami : public PlikTekstowy {
     vector <Adresat> adresaciZalogowanegoUzytkownika;
-    vector <Adresat> adresaciWPliku;
     const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
+    const string NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI = "TymczasowyPlikZAdresatami.txt";
     int idOstatniegoAdresata;
-
-    string pobierzLiczbe();
-    int konwersjaStringNaInt();
 
     string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami (Adresat adresat);
     Adresat pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami);
 
     int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
     int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
-    void wczytajAdresatowZPliku();
-    void aktualizacjaPlikuZAdresatami();
 
 public:
     PlikZAdresatami(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika)
@@ -39,11 +34,10 @@ public:
 
     vector <Adresat> pobierzAdresatowZalogowanegoUzytkownika();
     void wyczyszczRejestrAdresatowZalogowanegoUzytkownika();
-
     void wczytajAdresatowZalogowanegoUzytkownikaZPliku();
 
     void usunAdresata(int idUsuwanegoAdresata);
-    void zaktualizujDaneAdresata(vector <Adresat> zmodyfikowaneAdresaci);
+    void zaktualizujDaneAdresata(Adresat adresat);
 };
 
 #endif
