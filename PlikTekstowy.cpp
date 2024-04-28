@@ -18,7 +18,6 @@ bool PlikTekstowy::czyPlikJestPusty() {
     return pusty;
 }
 
-
 void PlikTekstowy::usunPlik(string nazwaPlikuZRozszerzeniem) {
     if (remove(nazwaPlikuZRozszerzeniem.c_str()) == 0) {}
     else

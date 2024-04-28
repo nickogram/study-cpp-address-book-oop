@@ -27,27 +27,27 @@ void KsiazkaAdresowa::wylogowanieUzytkownika() {
 }
 
 void KsiazkaAdresowa::dodajAdresata() {
-    adresatManager -> dodajAdresata();
+    adresatManager->dodajAdresata();
 }
 
 void KsiazkaAdresowa::usunAdresata() {
-    adresatManager -> usunAdresata();
+    adresatManager->usunAdresata();
 }
 
 void KsiazkaAdresowa::edytujAdresata() {
-    adresatManager -> edytujAdresata();
+    adresatManager->edytujAdresata();
 }
 
 void KsiazkaAdresowa::wypiszWszystkichAdresatowZalogowanegoUzytkownika() {
-    adresatManager -> wypiszWszystkichAdresatow();
+    adresatManager->wypiszWszystkichAdresatow();
 }
 
 void KsiazkaAdresowa::wyszukajAdresatowPoImieniu() {
-    adresatManager -> wyszukajAdresatowPoImieniu();
+    adresatManager->wyszukajAdresatowPoImieniu();
 }
 
 void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku() {
-    adresatManager -> wyszukajAdresatowPoNazwisku();
+    adresatManager->wyszukajAdresatowPoNazwisku();
 }
 
 char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego() {

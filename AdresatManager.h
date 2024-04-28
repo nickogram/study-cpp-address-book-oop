@@ -21,6 +21,7 @@ class AdresatManager {
 
     Adresat podajDaneNowegoAdresata();
     int pobierzIdOstatniegoAdresataZPliku();
+    int podajIdWybranegoAdresata();
     void wyswietlDaneAdresata(Adresat adresat);
     bool menuEdycjiAdresata(bool czyWprowadzonoZmiany, int pozycjaDoEdycji);
 
